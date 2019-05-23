@@ -1,0 +1,4 @@
+/* --- USERS --- */
+export const LOAD_USERS_INIT = 'LOAD_USERS_INIT';
+export const LOAD_USERS_SUCCESS = 'LOAD_USERS_SUCCESS';
+export const LOAD_USERS_ERROR = 'LOAD_USERS_ERROR';

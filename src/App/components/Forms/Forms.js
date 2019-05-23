@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 
-export default function Forms() {
+export default function Forms(props) {
     const [personName, handleNameChange] = useState('');
     const [personAge, handleAgeChange] = useState(0);
-    const [personList, updatePersonList] = useState([]);
 
     const handleChange = (e) => {
         if (e.target.name === 'personName') {
@@ -15,20 +14,13 @@ export default function Forms() {
 
     const onSaveClick = (e) => {
         e.preventDefault();
-        const lastMemberId = personList.length ? personList[personList.length - 1].id : 0;
-        const obj = {
-            id: lastMemberId + 1,
-            name: personName,
-            age: personAge
-        }
-        updatePersonList(m => m.concat(obj));
+        props.onSaveClick(personName, personAge);
         handleNameChange('');
         handleAgeChange(0);
     }
 
     const handleDeletePerson = (id) => {
-        const updatedList = personList.filter(person => person.id !== id);
-        updatePersonList(updatedList);
+        props.handleDeletePerson(id);
     }
 
     return (
@@ -69,7 +61,7 @@ export default function Forms() {
                         </div>
                     </div>
                     <div className="col-sm-6">
-                        {personList.map(person => (
+                        {props.personList.map(person => (
                             <div key={person.id}>
                                 <span>{person.name} - {person.age}</span>
                                 <button

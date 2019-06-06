@@ -5,9 +5,9 @@ const loadPersonsList = () => ({
     payload: null
 });
 
-const updatePersons = (response) => ({
+const updatePersons = (payload) => ({
     type: UPDATE_PERSONS_LIST,
-    payload: response
+    payload: payload
 });
 
 export { loadPersonsList, updatePersons };

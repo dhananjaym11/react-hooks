@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import PrivateRoute from './hoc/PrivateRoute/PrivateRoute';
@@ -14,10 +15,10 @@ class App extends React.Component {
       <div className="app">
         <BrowserRouter>
           <Switch>
-            <PrivateRoute exact path="/" component={HomePage} />
-            <PrivateRoute path="/forms" component={FormsPage} />
-            <PrivateRoute path="/users" component={UsersPage} />
-            <PrivateRoute path="/logout" component={LogoutPage} />
+            <PrivateRoute exact path="/" component={HomePage} isLoading={this.props.isLoading} />
+            <PrivateRoute path="/forms" component={FormsPage} isLoading={this.props.isLoading} />
+            <PrivateRoute path="/users" component={UsersPage} isLoading={this.props.isLoading} />
+            <PrivateRoute path="/logout" component={LogoutPage} isLoading={this.props.isLoading} />
             <Route path="/login" component={LoginPage} />
           </Switch>
         </BrowserRouter>
@@ -26,4 +27,10 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.usersReducer.loading
+  }
+}
+
+export default connect(mapStateToProps)(App);

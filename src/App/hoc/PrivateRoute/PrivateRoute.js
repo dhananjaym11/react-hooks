@@ -3,10 +3,10 @@ import { Route, Redirect } from 'react-router-dom';
 
 import Layout from '../Layout/Layout';
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({ component: Component, isLoading: isLoading, ...rest }) => (
     <Route {...rest} render={props => (
         localStorage.getItem('isLogin')
-            ? <Layout><Component {...props} /></Layout>
+            ? <Layout isLoading={isLoading}><Component {...props} /></Layout>
             : <Redirect to={{ pathname: '/login' }} />
     )} />
 );

@@ -2,16 +2,19 @@ import { LOAD_USERS_INIT, LOAD_USERS_SUCCESS, LOAD_USERS_ERROR } from "../../uti
 
 const loadUsersInit = () => ({
     type: LOAD_USERS_INIT,
+    loading: true,
     payload: null
 });
 
-const loadUsersSuccess = (response) => ({
+const loadUsersSuccess = (payload) => ({
     type: LOAD_USERS_SUCCESS,
-    response
+    loading: false,
+    payload
 });
 
 const loadUsersFailed = (err) => ({
     type: LOAD_USERS_ERROR,
+    loading: false,
     error: err
 });
 

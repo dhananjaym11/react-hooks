@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import Grid from '@material-ui/core/Grid';
 
 export default function UserList(props) {
     return (
-        <div className="row">
+        <Grid container spacing={0}>
             {props.list.map((user) => (
-                <div key={user.id} className="col-sm-3">
+                <Grid item xs={3}>
                     <Link to={`users/${user.login}`}>
                         {user.login}
                     </Link>
-                </div>
+                </Grid>
             ))}
-        </div>
+        </Grid>
     )
 };

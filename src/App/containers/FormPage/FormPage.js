@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Container from '@material-ui/core/Container';
 
 import * as actions from '../../core/actions';
 import Forms from '../../components/Forms/Forms';
@@ -25,14 +26,14 @@ class FormPage extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <Container fixed>
                 <h1>Form Page</h1>
                 <Forms
                     personList={this.props.personList}
                     onSaveClick={this.onSaveClick}
                     handleDeletePerson={this.handleDeletePerson}
                 />
-            </div>
+            </Container>
         )
     }
 }

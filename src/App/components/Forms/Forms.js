@@ -1,6 +1,10 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 
 export default function Forms(props) {
 
@@ -14,8 +18,8 @@ export default function Forms(props) {
 
     return (
         <div className="form-page">
-            <div className="row">
-                <div className="col-sm-6">
+            <Grid container spacing={2}>
+                <Grid item xs={6}>
                     <Formik
                         initialValues={{ email: '', age: '' }}
                         onSubmit={(values, { resetForm }) => {
@@ -48,78 +52,71 @@ export default function Forms(props) {
                             } = props;
                             return (
                                 <form onSubmit={handleSubmit}>
-                                    <div className="row">
-                                        <div className="col-sm-6">
-                                            <div className="form-group">
-                                                <label htmlFor="email" style={{ display: 'block' }}>Email</label>
-                                                <input
-                                                    id="email"
-                                                    placeholder="Enter your email"
-                                                    type="text"
-                                                    value={values.email}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    className={
-                                                        errors.email && touched.email ? 'form-control error' : 'form-control'
-                                                    }
-                                                />
-                                                {errors.email && touched.email && (
-                                                    <div className="input-feedback">{errors.email}</div>
-                                                )}
-                                            </div>
-                                        </div>
-                                        <div className="col-sm-6">
-                                            <div className="form-group">
-                                                <label htmlFor="age" style={{ display: 'block' }}>Age</label>
-                                                <input
-                                                    id="age"
-                                                    placeholder="Enter your age"
-                                                    type="text"
-                                                    value={values.age}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    className={
-                                                        errors.age && touched.age ? 'form-control error' : 'form-control'
-                                                    }
-                                                />
-                                                {errors.age && touched.age && (
-                                                    <div className="input-feedback">{errors.age}</div>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-sm-6">
-                                            <button
-                                                type="button"
-                                                className="outline"
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={6}>
+                                            <TextField
+                                                id="email"
+                                                label="Email"
+                                                fullWidth
+                                                margin="normal"
+                                                value={values.email}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                            />
+                                            {errors.email && touched.email && (
+                                                <div className="input-feedback">{errors.email}</div>
+                                            )}
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <TextField
+                                                id="age"
+                                                label="Age"
+                                                fullWidth
+                                                margin="normal"
+                                                value={values.age}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                            />
+                                            {errors.age && touched.age && (
+                                                <div className="input-feedback">{errors.age}</div>
+                                            )}
+                                        </Grid>
+                                    </Grid>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={6}>
+                                            <Button
+                                                variant="outlined"
                                                 onClick={handleReset}
                                                 disabled={!dirty || isSubmitting}
-                                            >Reset</button>
-                                            <button
+                                            >Reset</Button>
+                                            <Button
+                                                variant="outlined"
+                                                color="primary"
                                                 type="submit"
                                                 disabled={!isValid}
-                                            >Submit</button>
-                                        </div>
-                                    </div>
+                                            >Submit</Button>
+                                        </Grid>
+                                    </Grid>
                                 </form>
                             );
                         }}
                     </Formik>
-                </div>
-                <div className="col-sm-6">
+                </Grid>
+                <Grid item xs={6}>
                     {props.personList.map(person => (
                         <div key={person.id}>
                             <span>{person.name} - {person.age}</span>
-                            <button
+                            <Button
+                                color="secondary"
                                 style={{ marginLeft: '10px' }}
                                 title="delete"
                                 onClick={() => handleDeletePerson(person.id)}>
-                                x</button>
+                                <Icon>delete</Icon>
+                            </Button>
                         </div>
                     ))}
-                </div>
-            </div>
+                </Grid>
+            </Grid>
         </div>
     )
 }

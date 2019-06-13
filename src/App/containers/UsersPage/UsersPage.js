@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Container from '@material-ui/core/Container';
 
 import usersService from '../../core/services/users.service';
 import UserList from '../../components/User/UserList';
@@ -12,12 +13,12 @@ class UsersPage extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <Container fixed>
                 <h1>Users Page</h1>
                 {this.props.data.result ?
                     <UserList list={this.props.data.result} /> : null
                 }
-            </div>
+            </Container>
         )
     }
 }
